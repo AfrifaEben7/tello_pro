@@ -7,8 +7,8 @@
 
 ENABLE_DISPLAY = True
 TRACKING_MODE = True
-TURN_ENABLED = False
-TARGET_WIDTH = 300
+TURN_ENABLED = True
+TARGET_WIDTH = 250
 LOST_TOLERANCE = 3
 MIN_BATTERY = 20
 
@@ -51,6 +51,7 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')
 video_out = cv2.VideoWriter(video_path, fourcc, 20, (640, 640), isColor=True)
 
 model = YOLO('yolov8n.pt', task='detect')
+model.to("mps") 
 frame_read = tello.get_frame_read(with_queue=False, max_queue_len=0)
 
 def draw_status_info(frame, status, movement, target_obj):

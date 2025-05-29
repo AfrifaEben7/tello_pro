@@ -8,7 +8,6 @@ import os
 
 os.environ["OPENCV_FFMPEG_DEBUG"] = "0"
 
-# === CONFIGURATION ===
 TARGET_CLASS = "chair"   
 MODEL_PATH = "yolov8n.pt"  
 DETECTION_SIZE = 320
@@ -43,12 +42,10 @@ def keep_alive_thread():
 ka_thread = threading.Thread(target=keep_alive_thread, daemon=True)
 ka_thread.start()
 
-# === MAIN LOGIC ===
 def approach_object(obj_center, box_width):
     cx, cy = obj_center
     frame_cx, frame_cy = DETECTION_SIZE//2, DETECTION_SIZE//2
     moved = False
-    # Center horizontally
     err_x = cx - frame_cx
     if abs(err_x) > 20:
         if err_x > 0:
@@ -58,7 +55,6 @@ def approach_object(obj_center, box_width):
             print("Moving LEFT to center")
             tello.move_left(20)
         moved = True
-    # Center vertically
     err_y = cy - frame_cy
     if abs(err_y) > 20:
         if err_y > 0:

@@ -46,7 +46,7 @@ if battery < MIN_BATTERY:
     exit()
 tello.streamon()
 
-video_path = 'test_img/vid_det.mp4'
+video_path = 'vid_det.mp4'
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 video_out = cv2.VideoWriter(video_path, fourcc, 20, (640, 640), isColor=True)
 
